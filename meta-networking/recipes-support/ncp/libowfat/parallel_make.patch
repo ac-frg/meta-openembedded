@@ -1,0 +1,20 @@
+Depend on haveuint128.h for umult64.c
+
+This fixes parallel build issue e.g.
+mult/umult64.c:9:10: fatal error: 'haveuint128.h' file not found
+#include "haveuint128.h"
+         ^~~~~~~~~~~~~~~
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+--- a/Makefile
++++ b/Makefile
+@@ -430,7 +430,7 @@ range_str4inbuf.o: mult/range_str4inbuf.
+ range_strinbuf.o: mult/range_strinbuf.c rangecheck.h
+ umult16.o: mult/umult16.c uint16.h
+ umult32.o: mult/umult32.c uint32.h
+-umult64.o: mult/umult64.c uint64.h
++umult64.o: mult/umult64.c uint64.h haveuint128.h
+ open_append.o: open/open_append.c open.h
+ open_excl.o: open/open_excl.c open.h
+ open_read.o: open/open_read.c open.h
